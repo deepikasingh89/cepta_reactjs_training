@@ -2,121 +2,79 @@
 import React, { Component } from 'react';
 
 class ToDoAssignment extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            userInput: "",
-            list: []
-        }
-    }
+  constructor() {
+    super();
+    this.state = {
+      office: "",
+      home: "",
+      shopping: "",
+      lunch: "",
+    };
+  }
 
-    // Add HobbiesUpdate input
+  fn_updateoffice = (argu1, argu2, argu3, argu4) => {
+    this.setState({
+      office: argu1,
+      home: argu2,
+      shopping: argu3,
+      lunch: argu4,
+    });
+  };
 
-    updateInput(value) {
-        this.setState({
-            userInput: value,
-        });
-    }
-
-    // Add Hobbies
-
-    addHobbies() {
-        if (this.state.userInput !== '') {
-            const userInput = {
-                id: Math.random(),
-                value: "Hobbies - " + this.state.userInput
-            };
-            const list = [...this.state.list];
-            list.push(userInput);
-            // reset
-            this.setState({
-                list,
-                userInput: ""
-            });
-        }
-    }
-
-    // Add Food
-
-    addFood() {
-        if (this.state.userInput !== '') {
-            const userInput = {
-                id: Math.random(),
-                value: "Food - " + this.state.userInput
-            };
-            const list = [...this.state.list];
-            list.push(userInput);
-            this.setState({
-                list,
-                userInput: ""
-            });
-        }
-    }
-
-    // Add Place
-
-    addPlace() {
-        if (this.state.userInput !== '') {
-            const userInput = {
-                id: Math.random(),
-                value: "Favorite Place - " + this.state.userInput
-            };
-            const list = [...this.state.list];
-            list.push(userInput);
-            this.setState({
-                list,
-                userInput: ""
-            });
-        }
-    }
-
-    // Delete Todo List
-
-    deleteToDOList(key) {
-        const list = [...this.state.list];
-        const updateList = list.filter(item => item.id !== key);
-        this.setState({
-            list: updateList,
-        });
-    }
-
-    render() {
-        return (
-            <div className="todo_list_wrap">
-                <div className="add_item_input">
-                    <h2>TO DO List</h2>
-                    <input type="text"
-                        placeholder="Enter To DO List Item..."
-                        value={this.state.userInput}
-                        onChange={item => this.updateInput(item.target.value)}
-                    />
-                    <div className="cta_wrap">
-                        <div className="add_item_cta" onClick={() => this.addHobbies()}>
-                            ADD Hobbies
-                        </div>
-                        <div className="add_item_cta" onClick={() => this.addFood()}>
-                            ADD Foods
-                        </div>
-                        <div className="add_item_cta" onClick={() => this.addPlace()}>
-                            ADD Favorite Place
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    {this.state.list.map(item => {
-                        return (
-                            <>
-                                <div className="todo_list">
-                                    {item.value}
-                                </div>
-                                <div className="cta_delete" onClick={() => this.deleteToDOList(item.id)}>Delete</div>
-                            </>
-                        )
-                    })}
-                </div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="card">
+        <div className="container">
+          <button
+            className="button"
+            onClick={() => this.fn_updateoffice("Going to Office", "", "", "")}
+          >
+            Going to Office
+          </button>
+          <button
+            className="button"
+            onClick={() =>
+              this.fn_updateoffice(this.state.office, "Going to Home", "", "")
+            }
+          >
+            Going to Home
+          </button>
+          <button
+            className="button"
+            onClick={() =>
+              this.fn_updateoffice(
+                this.state.office,
+                this.state.home,
+                "Going for shopping",
+                ""
+              )
+            }
+          >
+            Going for shopping
+          </button>
+          <button
+            className="button"
+            onClick={() =>
+              this.fn_updateoffice(
+                this.state.office,
+                this.state.home,
+                this.state.shopping,
+                "Going to Lunch"
+              )
+            }
+          >
+            Going for Lunch
+          </button>
+        </div>
+        <div>
+          <h5>I am {this.state.office}</h5>
+          <h5>I am {this.state.home}</h5>
+          <h5>I am {this.state.shopping}</h5>
+          <h5>I am {this.state.lunch}</h5>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default ToDoAssignment;
