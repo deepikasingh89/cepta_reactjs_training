@@ -1,7 +1,4 @@
 import React, { useContext } from 'react';
-import Income from './Income';
-import Expense from './Expense';
-import { Row, Col } from 'react-bootstrap';
 import { DataContext } from './DataContext';
 import { Header } from "./Header";
 import { Balance } from "./Balance";
